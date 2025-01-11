@@ -1,0 +1,18 @@
+alter table if exists order_items drop foreign key if exists FKbioxgbv59vetrxe0ejfubep1w;
+alter table if exists order_items drop foreign key if exists FKocimc7dtr037rh4ls4l95nlfi;
+alter table if exists orders drop foreign key if exists FK32ql8ubntj5uh44ph9659tiih;
+alter table if exists products drop foreign key if exists FKog2rp4qthbtt2lfyhfo32lsw9;
+drop table if exists categories;
+drop table if exists order_items;
+drop table if exists orders;
+drop table if exists products;
+drop table if exists users;
+alter table if exists order_items drop foreign key if exists FKbioxgbv59vetrxe0ejfubep1w;
+alter table if exists order_items drop foreign key if exists FKocimc7dtr037rh4ls4l95nlfi;
+alter table if exists orders drop foreign key if exists FK32ql8ubntj5uh44ph9659tiih;
+alter table if exists products drop foreign key if exists FKog2rp4qthbtt2lfyhfo32lsw9;
+drop table if exists categories;
+drop table if exists order_items;
+drop table if exists orders;
+drop table if exists products;
+drop table if exists users;
