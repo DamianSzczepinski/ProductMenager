@@ -4,6 +4,7 @@ import com.example.ProductMenager_data.entity.Product;
 import com.example.ProductMenager_data.repository.ProductRepository;
 import com.example.ProductMenager_service.Api.FakeStoreApiClient;
 import com.example.ProductMenager_service.dto.ProductDto;
+import com.example.ProductMenager_service.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -64,12 +65,24 @@ public class ProductService {
         }
     }
 
-    public List<String> getAllCategoriesFromApi() {
+    // -------------------- Obsługa danych z zewnętrznego API (użytkownicy) --------------------
+    public List<UserDto> getAllUsersFromApi() {
         try {
-            return fakeStoreApiClient.getAllCategories();
+            List<UserDto> users = fakeStoreApiClient.getAllUsers();
+            log.info("Pobrano {} użytkowników z FakeStoreApi", users.size());
+            return users;
         } catch (Exception e) {
-            log.error("Błąd podczas pobierania kategorii z FakeStoreApi: {}", e.getMessage(), e);
-            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Nie udało się pobrać kategorii z FakeStoreApi. Spróbuj ponownie później.", e);
+            log.error("Błąd podczas komunikacji z FakeStoreApi (użytkownicy): {}", e.getMessage(), e);
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Nie udało się pobrać użytkowników z FakeStoreApi. Spróbuj ponownie później.", e);
+        }
+    }
+
+    public UserDto getUserFromApiById(Long id) {
+        try {
+            return fakeStoreApiClient.getUserById(id);
+        } catch (Exception e) {
+            log.error("Błąd podczas pobierania użytkownika o ID {} z FakeStoreApi: {}", id, e.getMessage(), e);
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Nie udało się pobrać użytkownika z FakeStoreApi. Spróbuj ponownie później.", e);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.ProductMenager_service.Api;
 import com.example.ProductMenager_data.entity.Product;
 import com.example.ProductMenager_data.repository.ProductRepository;
 import com.example.ProductMenager_service.dto.ProductDto;
+import com.example.ProductMenager_service.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +37,8 @@ public class ExternalProductService {
         productRepository.deleteById(id);
     }
 
-    // Obsługa danych z zewnętrznego API
+    // -------------------- Obsługa produktów z zewnętrznego API --------------------
+
     public List<ProductDto> getAllProductsFromApi() {
         return fakeStoreApiClient.getAllProducts();
     }
@@ -47,5 +49,13 @@ public class ExternalProductService {
 
     public List<String> getAllCategoriesFromApi() {
         return fakeStoreApiClient.getAllCategories();
+    }
+    // -------------------- Obsługa użytkowników z zewnętrznego API --------------------
+    public List<UserDto> getAllUsersFromApi() {
+        return fakeStoreApiClient.getAllUsers();
+    }
+
+    public UserDto getUserFromApiById(Long id) {
+        return fakeStoreApiClient.getUserById(id);
     }
 }

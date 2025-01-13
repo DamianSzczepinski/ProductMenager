@@ -3,6 +3,7 @@ package com.example.ProductMenager_api;
 import com.example.ProductMenager_data.entity.Product;
 import com.example.ProductMenager_service.ProductService;
 import com.example.ProductMenager_service.dto.ProductDto;
+import com.example.ProductMenager_service.dto.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,10 +58,17 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @GetMapping("/external/categories")
-    public ResponseEntity<List<String>> getAllCategoriesFromApi() {
-        List<String> categories = productService.getAllCategoriesFromApi();
-        return ResponseEntity.ok(categories);
+    // -------------------- UŻYTKOWNICY --------------------
+    @GetMapping("/external/users")
+    public ResponseEntity<List<UserDto>> getAllUsersFromApi() {
+        List<UserDto> users = productService.getAllUsersFromApi();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/external/users/{id}")
+    public ResponseEntity<UserDto> getUserFromApiById(@PathVariable Long id) {
+        UserDto user = productService.getUserFromApiById(id);
+        return ResponseEntity.ok(user);
     }
 }
 
